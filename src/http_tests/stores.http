@@ -2,6 +2,26 @@
 ### stores are the customers such as each golf course
 
 GET http://localhost:3001/stores
+### Test creating a logo after you build the code for adding a logo
+POST http://localhost:3001/stores
+Content-Type: application/json
+
+{
+  "name": "The ultimate Tiger Woods store",
+  "size": [],
+  "color": ["blue", "red", "orange"],
+  "material":"cotton"
+}
+
+### Test the PUT which should change a logo
+PUT http://localhost:3001/stores/5f2cb1e595e61f0c7369f3a0
+Content-Type: application/json
+
+{
+  "name": "Glow in the dark Logo"
+}
+###
+DELETE  http://localhost:3001/stores/5f2cb1e595e61f0c7369f3a0
 
 ### Test creating a store
 

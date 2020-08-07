@@ -3,12 +3,12 @@ const {getDatabase} = require('./mongo-common');
 const {ObjectID} = require('mongodb');
 
 // a "collection" in mongo is a lot like a list which is a lot like an Array
-const collectionName = 'Stores';
+const collectionName = 'stores';
 
-async function createStores(Store) {
+async function createStore(Stores) {
   const database = await getDatabase();
   // for `insertOne` info, see https://docs.mongodb.com/manual/reference/method/js-collection/
-  const {insertedId} = await database.collection(collectionName).insertOne(Store);
+  const {insertedId} = await database.collection(collectionName).insertOne(Stores);
   return insertedId;
 }
 
@@ -27,18 +27,18 @@ async function deleteStore(id) {
   });
 }
 
-async function updateStore(id, Store) {
+async function updateStore(id, Stores) {
   const database = await getDatabase();
 
   // `delete` is new to you. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
-  delete Store._id;
+  delete Stores._id;
 
   // https://docs.mongodb.com/manual/reference/method/db.collection.update/
   await database.collection(collectionName).update(
     { _id: new ObjectID(id), },
     {
       $set: {
-        ...Store,
+        ...Stores,
       },
     },
   );
@@ -46,7 +46,7 @@ async function updateStore(id, Store) {
 
 // export the functions that can be used by the main app code
 module.exports = {
-  createStores,
+  createStore,
   getStores,
   deleteStore,
   updateStore,
