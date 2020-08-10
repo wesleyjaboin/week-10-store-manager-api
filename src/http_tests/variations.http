@@ -1,8 +1,31 @@
 ### Test the stores
 ### variations are the product variations
 
-GET http://localhost:3001/variations
+
 
 ### Test creating a variation
+### Test the home page endpoint
 
+GET http://localhost:3001/variations
+
+### Test creating a logo after you build the code for adding a logo
+POST http://localhost:3001/variations
+Content-Type: application/json
+
+{
+  "name": "Panther Woods",
+  "size": [],
+  "color": ["blue", "red", "orange"],
+  "material":"cotton"
+}
+
+### Test the PUT which should change a logo
+PUT http://localhost:3001/variations
+Content-Type: application/json
+
+{
+  "name": "Glow in the dark Logo"
+}
+###
+DELETE  http://localhost:3001/variations
 ### Test the PUT which should change a variation
